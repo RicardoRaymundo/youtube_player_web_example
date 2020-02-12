@@ -6,16 +6,23 @@ import 'package:universal_html/html.dart' as html;
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  final String title;
-
-  const MyApp({Key key, this.title = "Home"}) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(home: MyPage(),);
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+
+class MyPage extends StatefulWidget {
+
+  const MyPage({Key key}) : super(key: key);
+
+  @override
+  _MyPageState createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
   void playVideo(String atUrl) {
     if (kIsWeb) {
       final v = html.window.document.getElementById('videoPlayer');
@@ -56,9 +63,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Container(height: 300, width: 400, child: Text('hello')),
       floatingActionButton: Row(
         children: <Widget>[
